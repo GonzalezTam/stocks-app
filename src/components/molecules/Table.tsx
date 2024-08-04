@@ -91,7 +91,16 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map((row) => {
         return (
-          <TableRow hover role="checkbox" tabIndex={-1} key={row.symbol}>
+          <TableRow
+            hover
+            role="checkbox"
+            tabIndex={-1}
+            key={row.symbol}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              "&:first-child td, &:first-child th": { paddingTop: 1 },
+            }}
+          >
             {columns.map((column) => {
               const value = row[column.id];
               return (
