@@ -20,6 +20,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   return (
     <TextField
+      type="search"
       inputProps={{ style: customStyles }}
       label={label}
       value={value}
