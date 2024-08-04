@@ -136,7 +136,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
                     color: "#e7e7e7",
                   }}
                 >
-                  {column.label}
+                  {column.label.toUpperCase()}
                 </TableCell>
               ))}
             </TableRow>
