@@ -1,4 +1,5 @@
-import { StockColumnType } from "./types";
+export type MarketType = "NYSE" | "NASDAQ" | "BCBA";
+export type StockColumnType = "symbol" | "name" | "currency" | "type";
 
 export interface StocksResponse {
 	count: number;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, FormControl, ToggleButtonGroup, Typography } from "@mui/material";
 import ToggleButton from "../atoms/ToggleButton";
-import { MarketType } from "../../ts/types";
+import { MarketType } from "../../types";
 
 interface MarketPickerProps {
   market: MarketType;

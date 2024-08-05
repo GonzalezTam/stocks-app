@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import createApiClient from "../utils/apiClient";
-import { MarketType } from "../ts/types";
-import { StockInterface } from "../ts/interfaces";
+import { MarketType, StockInterface } from "../types";
 
 const apiClient = createApiClient(
   import.meta.env.VITE_TWELVEDATA_BASE_URL,
