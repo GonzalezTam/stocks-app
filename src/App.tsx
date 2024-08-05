@@ -8,7 +8,7 @@ const App: React.FC = () => (
   <Router>
     <Routes>
       <Route path="/" element={<TablePage />} />
-      <Route path="/stock/:symbol" element={<StockPage />} />
+      <Route path="/:market/:symbol" element={<StockPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Router>

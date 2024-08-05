@@ -1,11 +1,15 @@
-import { useParams } from 'react-router-dom';
+import React from "react";
+import DetailView from "../components/organisms/DetailView";
+import { useParams } from "react-router-dom";
 
-const StockPage = () => {
-  const { id } = useParams<{ id: string }>();
+const StockPage: React.FC = () => {
+  const { market, symbol } = useParams<{ market: string; symbol: string }>();
 
   return (
     <div>
-      <h1>Stock {id} Page</h1>
+      <h1>Stock Detail {market}</h1>
+      {symbol && <DetailView symbol={symbol} />}
+      {!symbol && <p>Invalid stock</p>}
     </div>
   );
 };
