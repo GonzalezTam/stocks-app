@@ -5,7 +5,7 @@ import Header from "../components/atoms/Header";
 
 const TablePage: React.FC = () => {
   return (
-    <Container sx={{ mt: 6, mb: 6 }}>
+    <Container sx={{ mt: 3, mb: 3 }}>
       <Header type="h1" title="STOCKS OVERVIEW" />
       <StocksListView />
     </Container>

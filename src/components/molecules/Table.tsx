@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StockInterface } from "../../ts/interfaces";
-import { ColumnInterface } from "../../ts/interfaces";
+import { StockInterface, ColumnInterface } from "./../../types";
 import Paper from "@mui/material/Paper";
 import {
   Table as MUITable,
@@ -139,11 +138,11 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
                 <TableCell
                   key={column.id}
                   style={{ minWidth: column.minWidth }}
-                  sx={{
+                  sx={(theme) => ({
                     fontWeight: "bold",
-                    backgroundColor: "#2f2f2f",
-                    color: "#e7e7e7",
-                  }}
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.primary.contrastText,
+                  })}
                 >
                   {column.label.toUpperCase()}
                 </TableCell>
