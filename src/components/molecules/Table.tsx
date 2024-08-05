@@ -98,7 +98,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
             key={row.symbol}
             sx={{
               "&:last-child td, &:last-child th": { border: 0 },
-              "&:first-child td, &:first-child th": { paddingTop: 1 },
+              "&:first-of-type td, &:first-of-type th": { paddingTop: 1 },
             }}
           >
             {columns.map((column) => {
