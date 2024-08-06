@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+## Proyecto creado con React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Descripción
+Consiste en una aplicación web que permite acceder a información de acciones en tiempo real. La aplicación consume la API de [Twelve Data](https://twelvedata.com/) y permite filtrar segun exchange (NASDAQ, NYSE, BCBA), simbolo y nombre de la acción.
 
-Currently, two official plugins are available:
+### Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Clonar el repositorio en la carpeta deseada:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/GonzalezTam/stocks-app.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Ingresar a la carpeta del proyecto:
+
+```bash
+cd stocks-app
+```
+
+Para instalar las dependencias del proyecto, ejecutar el siguiente comando:
+
+```bash
+npm install
+```
+
+Crear un archivo `.env` en la raíz del proyecto con la siguiente variable de entorno:
+
+```bash
+VITE_TWELVEDATA_BASE_URL = <Your Twelve Data API key>
+VITE_TWELVEDATA_API_KEY = https://api.twelvedata.com
+```
+
+Para correr el proyecto, ejecutar el siguiente comando:
+
+```bash
+npm run dev
+```
