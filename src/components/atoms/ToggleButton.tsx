@@ -1,5 +1,5 @@
-import React from "react";
-import { ToggleButton as MUIToggleButton } from "@mui/material";
+import React from 'react';
+import { ToggleButton as MUIToggleButton } from '@mui/material';
 
 interface ToggleButtonProps {
   value: string;

@@ -1,15 +1,15 @@
-import React from "react";
-import { Box, AppBar, Toolbar, Typography, Container } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import React from 'react';
+import { Box, AppBar, Toolbar, Typography, Container } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
 const MainTemplate: React.FC = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <AppBar sx={{ position: { xs: "fixed", sm: "static" } }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <AppBar sx={{ position: { xs: 'fixed', sm: 'static' } }}>
         <Toolbar>
           <Typography
             variant="h6"
-            sx={{ flexGrow: 1, textAlign: { xs: "center", sm: "unset" } }}
+            sx={{ flexGrow: 1, textAlign: { xs: 'center', sm: 'unset' } }}
           >
             Stocks App
           </Typography>
@@ -25,7 +25,7 @@ const MainTemplate: React.FC = () => {
         component="footer"
         sx={{
           py: 2,
-          textAlign: "center",
+          textAlign: 'center',
           bgcolor: (theme) => theme.palette.grey[100],
         }}
       >
@@ -36,9 +36,9 @@ const MainTemplate: React.FC = () => {
             https://github.com/gonzalezTam"
             target="_blank"
             rel="noreferrer"
-            style={{ textDecoration: "none", color: "#000" }}
+            style={{ textDecoration: 'none', color: '#000' }}
           >
-            {" Agustin Tamburrino"}
+            {' Agustin Tamburrino'}
           </a>
         </Typography>
       </Box>

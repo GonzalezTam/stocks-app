@@ -1,9 +1,9 @@
-import React from "react";
-import HighchartsReact from "highcharts-react-official";
-import theme from "../../theme";
-import Highcharts from "highcharts";
-import { Typography, Box, Skeleton } from "@mui/material";
-import { StockValueInterface, StockMetaInterface } from "../../types";
+import React from 'react';
+import HighchartsReact from 'highcharts-react-official';
+import theme from '../../theme';
+import Highcharts from 'highcharts';
+import { Typography, Box, Skeleton } from '@mui/material';
+import { StockValueInterface, StockMetaInterface } from '../../types';
 
 interface ChartProps {
   isLoading: boolean;
@@ -14,7 +14,7 @@ interface ChartProps {
 const Chart: React.FC<ChartProps> = ({ isLoading, stock, values }) => {
   if (isLoading) {
     return (
-      <Box mt={5} sx={{ borderRadius: 2, overflow: "hidden" }}>
+      <Box mt={5} sx={{ borderRadius: 2, overflow: 'hidden' }}>
         <Skeleton variant="rectangular" height={350} width="100%" />
       </Box>
     );
@@ -24,7 +24,7 @@ const Chart: React.FC<ChartProps> = ({ isLoading, stock, values }) => {
     return (
       <Box
         mt={5}
-        sx={{ display: "flex", justifyContent: "center", height: 350 }}
+        sx={{ display: 'flex', justifyContent: 'center', height: 350 }}
       >
         <Typography variant="body1" color="textSecondary">
           No data available
@@ -46,7 +46,7 @@ const Chart: React.FC<ChartProps> = ({ isLoading, stock, values }) => {
     title: {
       text: `Stock Price`,
       style: {
-        fontSize: "18px",
+        fontSize: '18px',
       },
     },
     legend: {
@@ -55,29 +55,32 @@ const Chart: React.FC<ChartProps> = ({ isLoading, stock, values }) => {
     credits: {
       enabled: false,
     },
+    accessibility: {
+      enabled: false,
+    },
     chart: {
-      type: "line",
-      backgroundColor: "#ffffff",
+      type: 'line',
+      backgroundColor: '#ffffff',
       borderRadius: 10,
-      borderColor: "#a6b4f4",
+      borderColor: '#a6b4f4',
       borderWidth: 1,
     },
     rangeSelector: {
       selected: 1,
     },
     xAxis: {
-      type: "datetime",
+      type: 'datetime',
     },
     yAxis: {
       title: {
         text: `Price (${currency})`,
         margin: 20,
       },
-      gridLineColor: "#ddd",
+      gridLineColor: '#ddd',
     },
     series: [
       {
-        type: "line",
+        type: 'line',
         name: symbol,
         data: formattedData,
         color: theme.palette.primary.main,
@@ -85,8 +88,8 @@ const Chart: React.FC<ChartProps> = ({ isLoading, stock, values }) => {
         marker: {
           enabled: true,
           radius: 4,
-          fillColor: "#fff",
-          lineColor: "#007bff",
+          fillColor: '#fff',
+          lineColor: '#007bff',
           lineWidth: 2,
         },
         tooltip: {

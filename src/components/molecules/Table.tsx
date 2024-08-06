@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { StockInterface, ColumnInterface } from "./../../types";
-import Paper from "@mui/material/Paper";
+import React, { useState, useEffect } from 'react';
+import { StockInterface, ColumnInterface } from './../../types';
+import Paper from '@mui/material/Paper';
 import {
   Table as MUITable,
   CircularProgress,
   TableCell,
   TableRow,
   Typography,
-} from "@mui/material";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import Pagination from "../atoms/Pagination";
-import CustomLink from "../atoms/CustomLink";
+} from '@mui/material';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import Pagination from '../atoms/Pagination';
+import CustomLink from '../atoms/CustomLink';
 
 interface TableProps {
   data?: StockInterface[];
@@ -21,10 +21,10 @@ interface TableProps {
 }
 
 const columns: readonly ColumnInterface[] = [
-  { id: "symbol", label: "Symbol", minWidth: 100 },
-  { id: "name", label: "Name", minWidth: 400 },
-  { id: "currency", label: "Currency", minWidth: 50 },
-  { id: "type", label: "Type", minWidth: 150 },
+  { id: 'symbol', label: 'Symbol', minWidth: 100 },
+  { id: 'name', label: 'Name', minWidth: 400 },
+  { id: 'currency', label: 'Currency', minWidth: 50 },
+  { id: 'type', label: 'Type', minWidth: 150 },
 ];
 
 const Table: React.FC<TableProps> = ({ data, loading, error }) => {
@@ -35,7 +35,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
     setPage(newPage);
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -45,8 +45,8 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
     if (loading) {
       return (
         <TableRow>
-          <TableCell colSpan={columns.length} style={{ height: "330px" }}>
-            <CircularProgress sx={{ m: "auto", display: "block" }} />
+          <TableCell colSpan={columns.length} style={{ height: '330px' }}>
+            <CircularProgress sx={{ m: 'auto', display: 'block' }} />
           </TableCell>
         </TableRow>
       );
@@ -60,7 +60,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
               variant="body1"
               color="error"
               align="center"
-              sx={{ fontSize: "0.875rem", lineHeight: "1.43rem" }}
+              sx={{ fontSize: '0.875rem', lineHeight: '1.43rem' }}
             >
               {error}
             </Typography>
@@ -77,7 +77,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
               variant="body1"
               align="center"
               color="textSecondary"
-              sx={{ fontSize: "0.875rem", lineHeight: "1.43rem" }}
+              sx={{ fontSize: '0.875rem', lineHeight: '1.43rem' }}
             >
               0 results found
             </Typography>
@@ -96,22 +96,22 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
             tabIndex={-1}
             key={row.symbol}
             sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              "&:first-of-type td, &:first-of-type th": { paddingTop: 1 },
+              '&:last-child td, &:last-child th': { border: 0 },
+              '&:first-of-type td, &:first-of-type th': { paddingTop: 1 },
             }}
           >
             {columns.map((column) => {
               const value = row[column.id];
               return (
-                <TableCell key={column.id} style={{ maxWidth: "400px" }}>
-                  {column.label === "Symbol" ? (
+                <TableCell key={column.id} style={{ maxWidth: '400px' }}>
+                  {column.label === 'Symbol' ? (
                     <CustomLink
                       to={`/${row.exchange}/${row.symbol}`}
                       state={{ stock: row }}
                       customStyles={{
-                        color: "#576dd5",
-                        textDecoration: "none",
-                        fontWeight: "bold",
+                        color: '#576dd5',
+                        textDecoration: 'none',
+                        fontWeight: 'bold',
                       }}
                     >
                       {value}
@@ -130,7 +130,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
   useEffect(() => setPage(0), [data]);
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <MUITable stickyHeader aria-label="sticky table" size="small">
           <TableHead>
@@ -140,7 +140,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
                   key={column.id}
                   style={{ minWidth: column.minWidth }}
                   sx={(theme) => ({
-                    fontWeight: "bold",
+                    fontWeight: 'bold',
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.primary.contrastText,
                   })}

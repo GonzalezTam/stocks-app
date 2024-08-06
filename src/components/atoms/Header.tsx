@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { TypographyType, TypographyVariantType } from "../../types";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { TypographyType, TypographyVariantType } from '../../types';
 
 interface HeaderProps {
   children: React.ReactNode;

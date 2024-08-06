@@ -1,7 +1,11 @@
-import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosInstance } from "axios";
+import axios, {
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosInstance,
+} from 'axios';
 
 interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
-  headers: AxiosRequestHeaders
+  headers: AxiosRequestHeaders;
 }
 
 const createApiClient = (baseURL: string, apiKey?: string): AxiosInstance => {
@@ -17,7 +21,7 @@ const createApiClient = (baseURL: string, apiKey?: string): AxiosInstance => {
       if (apiKey) config.params = { ...config.params, apikey: apiKey };
       return config;
     },
-    (error) => Promise.reject(error)
+    (error) => Promise.reject(error),
   );
   return client;
 };

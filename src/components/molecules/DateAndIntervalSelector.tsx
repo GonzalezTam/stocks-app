@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import { SearchModeType, SearchIntervalType } from "../../types";
-import {
-  Box,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Button,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Dayjs } from "dayjs";
+import React, { useState } from 'react';
+import { SearchModeType, SearchIntervalType } from '../../types';
+import { SearchModeEnum, IntervalEnum } from '../../enums';
+import { Box, FormControl, Button, SelectChangeEvent } from '@mui/material';
+import SelectInput from '../atoms/SelectInput';
+import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface DateAndIntervalSelectorProps {
   onIntervalChange: (interval: SearchIntervalType) => void;
@@ -20,23 +14,26 @@ interface DateAndIntervalSelectorProps {
   isLoading: boolean;
 }
 
-const SEARCH_MODES: SearchModeType[] = ["real-time", "historical"];
-const INTERVALS: SearchIntervalType[] = ["1min", "5min", "15min"];
-
 const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
   onIntervalChange,
-  //onDateRangeChange,
   onModeChange,
   onSearchClick,
   isLoading,
 }) => {
-  const [mode, setMode] = useState<SearchModeType>("real-time");
-  const [interval, setInterval] = useState<string>("5min");
+  const [mode, setMode] = useState<SearchModeType>(SearchModeEnum.REAL_TIME);
+  const [interval, setInterval] = useState<string>(IntervalEnum.MIN_15);
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
 
   const handleModeChange = (event: SelectChangeEvent<string>) => {
     const selectedMode = event.target.value as SearchModeType;
+    if (selectedMode === SearchModeEnum.REAL_TIME) {
+      setStartDate(null);
+      setEndDate(null);
+    } else {
+      setStartDate(dayjs().subtract(1, 'day'));
+      setEndDate(dayjs());
+    }
     setMode(selectedMode);
     onModeChange(selectedMode);
   };
@@ -54,7 +51,7 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
 
   const inValidDateSelection = (
     startDate: Dayjs | null,
-    endDate: Dayjs | null
+    endDate: Dayjs | null,
   ) => {
     if (!startDate || !endDate) return true;
     if (!startDate.isValid() || !endDate.isValid()) return true;
@@ -66,16 +63,16 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
     <Box
       sx={{
         marginTop: { xs: 4 },
-        display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         gap: 2,
-        alignItems: "center",
+        alignItems: 'center',
       }}
     >
       <Box
         sx={{
-          display: { xs: "block", sm: "flex" },
-          alignItems: "center",
+          display: { xs: 'block', sm: 'flex' },
+          alignItems: 'center',
           marginLeft: { xs: 0, sm: 5 },
         }}
       >
@@ -85,18 +82,16 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
           sx={(theme) => ({
             marginBottom: { xs: 2, sm: 0 },
             marginRight: { sm: 2 },
-            minWidth: "120px",
+            minWidth: '120px',
             backgroundColor: theme.palette.common.white,
           })}
         >
-          <InputLabel>Mode</InputLabel>
-          <Select value={mode} onChange={handleModeChange} label="Mode">
-            {SEARCH_MODES.map((mode) => (
-              <MenuItem key={mode} value={mode}>
-                {mode.charAt(0).toUpperCase() + mode.slice(1)}
-              </MenuItem>
-            ))}
-          </Select>
+          <SelectInput
+            label="Mode"
+            value={mode}
+            onChange={handleModeChange}
+            options={Object.values(SearchModeEnum)}
+          />
         </FormControl>
 
         <FormControl
@@ -107,25 +102,19 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
             backgroundColor: theme.palette.common.white,
           })}
         >
-          <InputLabel>Interval</InputLabel>
-          <Select
+          <SelectInput
+            label="Interval"
             value={interval}
             onChange={handleIntervalChange}
-            label="Interval"
-          >
-            {INTERVALS.map((interval) => (
-              <MenuItem key={interval} value={interval}>
-                {interval}
-              </MenuItem>
-            ))}
-          </Select>
+            options={Object.values(IntervalEnum)}
+          />
         </FormControl>
       </Box>
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Box
           display="flex"
-          flexDirection={{ xs: "column", sm: "row" }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
           gap={2}
           alignItems="center"
         >
@@ -134,11 +123,11 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
             value={startDate}
             onChange={(newValue) => setStartDate(newValue)}
             maxDateTime={endDate || undefined}
-            disabled={mode === "real-time"}
+            disabled={mode === SearchModeEnum.REAL_TIME}
             sx={(theme) => ({
-              width: { xs: "100%", sm: "auto" },
+              width: { xs: '100%', sm: 'auto' },
               backgroundColor:
-                mode === "real-time"
+                mode === SearchModeEnum.REAL_TIME
                   ? theme.palette.grey[100]
                   : theme.palette.common.white,
             })}
@@ -148,11 +137,11 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
             value={endDate}
             onChange={(newValue) => setEndDate(newValue)}
             minDateTime={startDate || undefined}
-            disabled={mode === "real-time"}
+            disabled={mode === SearchModeEnum.REAL_TIME}
             sx={(theme) => ({
-              width: { xs: "100%", sm: "auto" },
+              width: { xs: '100%', sm: 'auto' },
               backgroundColor:
-                mode === "real-time"
+                mode === SearchModeEnum.REAL_TIME
                   ? theme.palette.grey[100]
                   : theme.palette.common.white,
             })}
@@ -163,7 +152,11 @@ const DateAndIntervalSelector: React.FC<DateAndIntervalSelectorProps> = ({
           color="primary"
           size="large"
           sx={{ marginLeft: { xs: 0, sm: 2 } }}
-          disabled={inValidDateSelection(startDate, endDate) || isLoading}
+          disabled={
+            inValidDateSelection(startDate, endDate) ||
+            mode === SearchModeEnum.REAL_TIME ||
+            isLoading
+          }
           onClick={handleSearchClick}
         >
           Search

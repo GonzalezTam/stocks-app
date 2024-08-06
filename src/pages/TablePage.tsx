@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "@mui/material";
-import StocksListView from "../components/organisms/StocksListView";
-import Header from "../components/atoms/Header";
+import React from 'react';
+import { Container } from '@mui/material';
+import StocksListView from '../components/organisms/StocksListView';
+import Header from '../components/atoms/Header';
 
 const TablePage: React.FC = () => {
   return (

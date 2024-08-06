@@ -1,20 +1,28 @@
-export type MarketType = "NYSE" | "NASDAQ" | "BCBA";
-export type StockColumnType = "symbol" | "name" | "currency" | "type";
+import { SearchModeEnum, IntervalEnum } from './enums';
 
-export type SearchModeType = "real-time" | "historical";
-export type SearchIntervalType = "1min" | "5min" | "15min";
+export type MarketType = 'NYSE' | 'NASDAQ' | 'BCBA';
+export type StockColumnType = 'symbol' | 'name' | 'currency' | 'type';
 
-export type TypographyType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type SearchModeType =
+  | SearchModeEnum.REAL_TIME
+  | SearchModeEnum.HISTORICAL;
+
+export type SearchIntervalType =
+  | IntervalEnum.MIN_1
+  | IntervalEnum.MIN_5
+  | IntervalEnum.MIN_15;
+
+export type TypographyType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type TypographyVariantType =
   | TypographyType
-  | "body1"
-  | "body2"
-  | "button"
-  | "caption"
-  | "inherit"
-  | "overline"
-  | "subtitle1"
-  | "subtitle2";
+  | 'body1'
+  | 'body2'
+  | 'button'
+  | 'caption'
+  | 'inherit'
+  | 'overline'
+  | 'subtitle1'
+  | 'subtitle2';
 
 export interface StocksResponse {
   count: number;

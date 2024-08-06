@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
-import createApiClient from "../utils/apiClient";
-import { StockDetailResponseInterface } from "../types";
-import { Dayjs } from "dayjs";
+import { useState, useEffect, useCallback } from 'react';
+import createApiClient from '../utils/apiClient';
+import { StockDetailResponseInterface } from '../types';
+import { Dayjs } from 'dayjs';
 
 const apiClient = createApiClient(
   import.meta.env.VITE_TWELVEDATA_BASE_URL,
-  import.meta.env.VITE_TWELVEDATA_API_KEY
+  import.meta.env.VITE_TWELVEDATA_API_KEY,
 );
 
 export const useFetchStockDetail = (
@@ -13,7 +13,7 @@ export const useFetchStockDetail = (
   market: string,
   interval: string,
   startDate: Dayjs | null,
-  endDate: Dayjs | null
+  endDate: Dayjs | null,
 ) => {
   const [data, setData] = useState<StockDetailResponseInterface>();
   const [loading, setLoading] = useState<boolean>(true);
@@ -35,7 +35,7 @@ export const useFetchStockDetail = (
       if (response.status !== 200) throw new Error();
       setData(response.data);
     } catch (error) {
-      setError("Ups! Something went wrong");
+      setError('Ups! Something went wrong');
     } finally {
       setLoading(false);
     }

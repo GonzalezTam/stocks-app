@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { MarketType, StockInterface } from "../types";
-import { Container, Typography } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Header from "../components/atoms/Header";
-import CustomLink from "../components/atoms/CustomLink";
-import StockDetailView from "../components/organisms/DetailView";
+import React, { useEffect } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { MarketType, StockInterface } from '../types';
+import { Container, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Header from '../components/atoms/Header';
+import CustomLink from '../components/atoms/CustomLink';
+import StockDetailView from '../components/organisms/DetailView';
 
-const validMarkets: MarketType[] = ["NYSE", "NASDAQ", "BCBA"];
+const validMarkets: MarketType[] = ['NYSE', 'NASDAQ', 'BCBA'];
 
 const StockPage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const StockPage: React.FC = () => {
 
   useEffect(() => {
     if (!market || !validMarkets.includes(market as MarketType))
-      navigate("/404");
+      navigate('/404');
   }, [market, navigate]);
 
   return (
@@ -26,11 +26,11 @@ const StockPage: React.FC = () => {
       <Header
         variant="h4"
         type="h2"
-        customStyles={{ display: "flex", alignItems: "center" }}
+        customStyles={{ display: 'flex', alignItems: 'center' }}
       >
         <CustomLink
           to="/"
-          customStyles={{ marginRight: "1rem", display: "flex" }}
+          customStyles={{ marginRight: '1rem', display: 'flex' }}
         >
           <ArrowBackIcon />
         </CustomLink>
@@ -39,10 +39,33 @@ const StockPage: React.FC = () => {
           fontSize={20}
           fontWeight={500}
           noWrap
-          overflow={"auto"}
-          sx={{ textOverflow: "unset" }}
+          overflow={'auto'}
+          sx={{ textOverflow: 'unset' }}
         >
-          {stock.symbol} - {stock.name} - {stock.currency}
+          {stock ? (
+            <Typography
+              variant="body1"
+              fontSize={20}
+              fontWeight={400}
+              noWrap
+              overflow={'auto'}
+              sx={{ textOverflow: 'unset' }}
+            >
+              <strong>{stock?.symbol}</strong> - {stock?.name} -{' '}
+              {stock?.currency}
+            </Typography>
+          ) : (
+            <Typography
+              variant="body1"
+              fontSize={20}
+              fontWeight={500}
+              noWrap
+              overflow={'auto'}
+              sx={{ textOverflow: 'unset' }}
+            >
+              {symbol}
+            </Typography>
+          )}
         </Typography>
       </Header>
       <StockDetailView

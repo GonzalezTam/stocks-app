@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface LinkProps {
   to: string;
@@ -18,7 +18,7 @@ const CustomLink: React.FC<LinkProps> = ({
     <Link
       to={to}
       state={state}
-      style={{ textDecoration: "none", color: "inherit", ...customStyles }}
+      style={{ textDecoration: 'none', color: 'inherit', ...customStyles }}
     >
       {children}
     </Link>

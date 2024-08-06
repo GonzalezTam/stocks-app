@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import createApiClient from "../utils/apiClient";
-import { MarketType, StockInterface } from "../types";
+import { useState, useEffect } from 'react';
+import createApiClient from '../utils/apiClient';
+import { MarketType, StockInterface } from '../types';
 
 const apiClient = createApiClient(
   import.meta.env.VITE_TWELVEDATA_BASE_URL,
-  import.meta.env.VITE_TWELVEDATA_API_KEY
+  import.meta.env.VITE_TWELVEDATA_API_KEY,
 );
 
 export const useFetchStockList = (market: MarketType) => {
@@ -21,7 +21,7 @@ export const useFetchStockList = (market: MarketType) => {
         if (response.status !== 200) throw new Error();
         setData(response.data.data);
       } catch (error) {
-        setError("Ups! Something went wrong");
+        setError('Ups! Something went wrong');
       } finally {
         setLoading(false);
       }
