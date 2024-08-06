@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFetchStockList } from "../../hooks/useFetchStockList";
-import { MarketType } from "../../ts/types";
+import { MarketType } from "../../types";
 import { Box } from "@mui/material";
 import Table from "../molecules/Table";
 import MarketPicker from "../molecules/MarketPicker";
@@ -8,9 +8,9 @@ import SearchInput from "../atoms/SearchInput";
 
 const StocksListView: React.FC = () => {
   const [market, setMarket] = useState<MarketType>("NYSE");
-  const { data, loading, error } = useFetchStockList(market);
   const [nameFilter, setNameFilter] = useState<string>("");
   const [symbolFilter, setSymbolFilter] = useState<string>("");
+  const { data, loading, error } = useFetchStockList(market);
 
   const handleMarketChange = (
     _event: React.MouseEvent<HTMLElement>,

@@ -18,6 +18,7 @@ export const useFetchStockList = (market: MarketType) => {
       setLoading(true);
       try {
         const response = await apiClient.get(url);
+        if (response.status !== 200) throw new Error();
         setData(response.data.data);
       } catch (error) {
         setError("Ups! Something went wrong");

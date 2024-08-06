@@ -1,10 +1,10 @@
-import React from 'react';
-import { TablePagination } from '@mui/material';
+import React from "react";
+import { TablePagination } from "@mui/material";
 
 interface PaginationProps {
   count: number;
   rowsPerPage: number;
-	labelRowsPerPage?: string;
+  labelRowsPerPage?: string;
   page: number;
   onPageChange: (event: unknown, newPage: number) => void;
   onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({
   count,
   rowsPerPage,
   page,
-	labelRowsPerPage,
+  labelRowsPerPage,
   onPageChange,
   onRowsPerPageChange,
 }) => (

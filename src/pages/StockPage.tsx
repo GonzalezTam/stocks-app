@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { MarketType } from "../types";
-import { Container } from "@mui/material";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { MarketType, StockInterface } from "../types";
+import { Container, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Header from "../components/atoms/Header";
 import CustomLink from "../components/atoms/CustomLink";
@@ -10,8 +10,11 @@ import StockDetailView from "../components/organisms/DetailView";
 const validMarkets: MarketType[] = ["NYSE", "NASDAQ", "BCBA"];
 
 const StockPage: React.FC = () => {
-  const { market, symbol } = useParams<{ market: string; symbol: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { market, symbol } = useParams<{ market: string; symbol: string }>();
+  const stock = location.state?.stock as StockInterface;
 
   useEffect(() => {
     if (!market || !validMarkets.includes(market as MarketType))
@@ -31,7 +34,16 @@ const StockPage: React.FC = () => {
         >
           <ArrowBackIcon />
         </CustomLink>
-        {market} - {symbol}
+        <Typography
+          variant="body1"
+          fontSize={20}
+          fontWeight={500}
+          noWrap
+          overflow={"auto"}
+          sx={{ textOverflow: "unset" }}
+        >
+          {stock.symbol} - {stock.name} - {stock.currency}
+        </Typography>
       </Header>
       <StockDetailView
         market={market as MarketType}

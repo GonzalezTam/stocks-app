@@ -5,14 +5,20 @@ import { Outlet } from "react-router-dom";
 const MainTemplate: React.FC = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <AppBar position="static">
+      <AppBar sx={{ position: { xs: "fixed", sm: "static" } }}>
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            sx={{ flexGrow: 1, textAlign: { xs: "center", sm: "unset" } }}
+          >
             Stocks App
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container component="main" sx={{ flex: 1, py: 2 }}>
+      <Container
+        component="main"
+        sx={{ flex: 1, paddingTop: { xs: 8, sm: 4 } }}
+      >
         <Outlet />
       </Container>
       <Box

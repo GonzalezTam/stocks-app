@@ -107,6 +107,7 @@ const Table: React.FC<TableProps> = ({ data, loading, error }) => {
                   {column.label === "Symbol" ? (
                     <CustomLink
                       to={`/${row.exchange}/${row.symbol}`}
+                      state={{ stock: row }}
                       customStyles={{
                         color: "#576dd5",
                         textDecoration: "none",
