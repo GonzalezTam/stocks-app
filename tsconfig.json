@@ -1,5 +1,9 @@
 {
   "files": [],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vitest/globals"]
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"
