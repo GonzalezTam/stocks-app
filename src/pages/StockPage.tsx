@@ -17,7 +17,7 @@ const StockPage: React.FC = () => {
   const stock = location.state?.stock as StockInterface;
 
   useEffect(() => {
-    if (!market || !validMarkets.includes(market as MarketType))
+    if (!market || !validMarkets.includes(market.toUpperCase() as MarketType))
       navigate('/404');
   }, [market, navigate]);
 
@@ -63,7 +63,7 @@ const StockPage: React.FC = () => {
               overflow={'auto'}
               sx={{ textOverflow: 'unset' }}
             >
-              {symbol}
+              {symbol?.toUpperCase()}
             </Typography>
           )}
         </Typography>
